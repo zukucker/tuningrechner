@@ -292,6 +292,13 @@
             </table>
         </div>
     </div>
+    <h2>Rabatt</h2>
+    <div>
+        <label><input type="radio" name="discount" id="discount10" class="discount-radio" data-discount="10"> 10% Rabatt</label>
+        <label><input type="radio" name="discount" id="discount25" class="discount-radio" data-discount="25"> 25% Rabatt</label>
+        <label><input type="radio" name="discount" id="discount50" class="discount-radio" data-discount="50"> 50% Rabatt</label>
+        <label><input type="radio" name="discount" class="discount-radio" data-discount="0" checked> Kein Rabatt</label>
+    </div>
     <div id="receipt" style="background-color:black;">
         <h2>Beleg</h2>
         <table class="beleg">
@@ -308,10 +315,16 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td><strong><u>Gesamtsumme</u></strong></td>
-                    <td></td>
-                    <td></td>
-                    <td width="30%" id="totalPrice">0 €</td>
+                    <td colspan="3">Gesamtsumme vor Rabatt</td>
+                    <td id="totalPrice">0 €</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Rabatt</td>
+                    <td id="discountAmount">0 €</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Endbetrag</td>
+                    <td id="finalPrice">0 €</td>
                 </tr>
             </tfoot>
         </table>

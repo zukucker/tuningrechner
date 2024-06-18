@@ -1,10 +1,12 @@
 $(document).ready(function() {
-    $('.option-checkbox').change(function() {
+    $('.option-checkbox, .discount-radio').change(function() {
         updateReceipt();
     });
     function updateReceipt() {
         let totalPrice = 0;
         let selectedOptions = [];
+        let discountPercentage = 0;
+        
 
         $('.tuningTable tbody tr').each(function() {
             let section = $(this).closest('table').prev('h2').text();
@@ -30,7 +32,18 @@ $(document).ready(function() {
             $(this).find('.price').text(rowTotal + ' €');
         });
 
+        $('.discount-radio').each(function() {
+            if ($(this).is(':checked')) {
+                discountPercentage = Math.max(discountPercentage, parseInt($(this).data('discount')));
+            }
+        });
+
+        let discountAmount = totalPrice * (discountPercentage / 100);
+        let finalPrice = totalPrice - discountAmount;
+        
         $('#totalPrice').text(totalPrice + ' €');
+        $('#discountAmount').text('-' + discountAmount.toFixed(2) + ' €');
+        $('#finalPrice').text(finalPrice.toFixed(2) + ' €');
         $('#selectedOptions').empty();
         for (let option in selectedOptions) {
             let item = selectedOptions[option];

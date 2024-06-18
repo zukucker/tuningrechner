@@ -77,7 +77,10 @@ th, td {
 #selectedOptions li {
     margin: 5px 0;
 }
-#totalPrice{
+#discountAmount{
+    color:lime;
+}
+#finalPrice{
     color:#FF0000;
 }
 
