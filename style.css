@@ -43,7 +43,9 @@ th, td {
 .w50{
     width:48.5%;
 }
-
+.center{
+    justify-content: center;
+}
 .sbw{
     justify-content: space-between;
 }
@@ -52,10 +54,18 @@ th, td {
     width: 100px;
     text-align: right;
 }
-
+#printReceipt{
+    padding:.5rem;
+    border-radius: 5px;
+    border:none;
+    cursor: pointer;
+}
+#printReceipt:hover{
+    text-decoration: underline;
+}
 #receipt {
-    border: 1px solid #00FFFF;
-    padding: 10px;
+    /* border: 1px solid #00FFFF; */
+    /* padding: 10px; */
     margin-top: 20px;
 }
 

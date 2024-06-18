@@ -11,7 +11,7 @@
     <div class="container flex row sbw">
         <div class="flex col w50">
             <h2>Performance Tuning</h2>
-            <table id="tuningTable">
+            <table class="tuningTable">
                 <thead>
                     <tr>
                         <th>Option</th>
@@ -48,7 +48,7 @@
                 </tbody>
             </table>
             <h2>Optik Tuning</h2>
-            <table id="tuningTable">
+            <table class="tuningTable">
                 <thead>
                     <tr>
                         <th>Option</th>
@@ -152,7 +152,7 @@
         </div>
         <div class="flex col w50">
             <h2>Special Tuning</h2>
-            <table id="tuningTable">
+            <table class="tuningTable">
                 <thead>
                     <tr>
                         <th>Option</th>
@@ -209,7 +209,7 @@
                 </tbody>
             </table>
             <h2>Lack</h2>
-            <table id="tuningTable">
+            <table class="tuningTable">
                 <thead>
                     <tr>
                         <th>Option</th>
@@ -267,11 +267,27 @@
             </table>
         </div>
     </div>
-    <div id="receipt">
+    <div id="receipt" style="background-color:black;">
         <h2>Beleg</h2>
-        <ul id="selectedOptions">
-        </ul>
-        <p>Summe: <span id="totalPrice">0</span></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bereich</th>
+                    <th>Option</th>
+                    <th>Preis</th>
+                </tr>
+            </thead>
+            <tbody id="selectedOptions">
+                <!-- Ausgewählte Optionen werden hier angezeigt -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><strong><u>Gesamtsumme</u></strong></td>
+                    <td></td>
+                    <td id="totalPrice">0 €</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
     <button id="printReceipt">Beleg drucken</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
