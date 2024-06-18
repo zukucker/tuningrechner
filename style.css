@@ -80,3 +80,11 @@ th, td {
 #totalPrice{
     color:#FF0000;
 }
+@media(max-width:30em){
+    .row{
+        flex-direction: column;
+    }
+    .w50{
+        width:100%;
+    }
+}
