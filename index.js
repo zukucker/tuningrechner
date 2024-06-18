@@ -6,27 +6,36 @@ $(document).ready(function() {
         let totalPrice = 0;
         let selectedOptions = [];
 
-        $('.tuningTable').each(function() {
-            let section = $(this).prev('h2').text();
+        $('.tuningTable tbody tr').each(function() {
+            let section = $(this).closest('table').prev('h2').text();
+            let optionText = $(this).find('td:first').text();
+            let rowTotal = 0;
+            let count = 0;
 
             $(this).find('.option-checkbox').each(function() {
                 if ($(this).is(':checked')) {
                     let price = parseInt($(this).data('price'));
+                    rowTotal += price;
                     totalPrice += price;
-                    let optionText = $(this).closest('tr').find('td:first').text();
-                    selectedOptions.push({ section: section, option: optionText, price: price });
-                    $(this).closest('tr').find('.price').text(price + ' €');
-                } else {
-                    $(this).closest('tr').find('.price').text('0');
+                    count++;
+                    
+                    if (!selectedOptions[optionText]) {
+                        selectedOptions[optionText] = { section: section, count: 0, price: price };
+                    }
+                    
+                    selectedOptions[optionText].count += 1;
                 }
             });
+
+            $(this).find('.price').text(rowTotal + ' €');
         });
 
         $('#totalPrice').text(totalPrice + ' €');
         $('#selectedOptions').empty();
-        selectedOptions.forEach(function(option) {
-            $('#selectedOptions').append('<tr><td>' + option.section + '</td><td>' + option.option + '</td><td>' + option.price + ' €</td></tr>');
-        });
+        for (let option in selectedOptions) {
+            let item = selectedOptions[option];
+            $('#selectedOptions').append('<tr><td>' + item.section + '</td><td>' + option + '</td><td>' + item.count + '</td><td>' + (item.count * item.price) + ' €</td></tr>');
+        }
         // selectedOptions.forEach(function(option) {
         //     $('#selectedOptions').append('<li>' + option + '</li>');
         // });
