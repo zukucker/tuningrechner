@@ -49,9 +49,6 @@ $(document).ready(function() {
             let item = selectedOptions[option];
             $('#selectedOptions').append('<tr><td>' + item.section + '</td><td>' + option + '</td><td>' + item.count + '</td><td>' + (item.count * item.price) + ' €</td></tr>');
         }
-        // selectedOptions.forEach(function(option) {
-        //     $('#selectedOptions').append('<li>' + option + '</li>');
-        // });
     }
     $('#printReceipt').click(function() {
         html2canvas(document.querySelector("#receipt")).then(canvas => {
@@ -60,20 +57,28 @@ $(document).ready(function() {
             newCanvas.height = canvas.height;
             let context = newCanvas.getContext('2d');
 
-            // Hintergrund zeichnen
             context.fillStyle = 'black';
             context.fillRect(0, 0, newCanvas.width, newCanvas.height);
-
-            // Gerendertes Bild auf neues Canvas zeichnen
             context.drawImage(canvas, 0, 0);
+            
+            newCanvas.toBlob(function(blob) {
+                navigator.clipboard.write([
+                    new ClipboardItem({
+                        'image/png': blob
+                    })
+                ]).then(function() {
+                    alertify.success('Beleg wurde in die Zwischenablage kopiert.');
+                }).catch(function(error) {
+                    alertify.error('Fehler beim Kopieren in die Zwischenablage:', error);
+                });
+            }, 'image/png');
 
-            // Herunterladen des Bildes
             let link = document.createElement('a');
             link.href = newCanvas.toDataURL('image/png');
             link.download = 'beleg.png';
             link.click();
         }).catch(function(error) {
-            alert('Fehler beim Erstellen des Screenshots:', error);
+            alertify.error('Fehler beim Erstellen des Screenshots:', error);
         });
     });
 });
