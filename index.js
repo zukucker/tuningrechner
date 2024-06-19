@@ -73,10 +73,10 @@ $(document).ready(function() {
                 });
             }, 'image/png');
 
-            let link = document.createElement('a');
-            link.href = newCanvas.toDataURL('image/png');
-            link.download = 'beleg.png';
-            link.click();
+            // let link = document.createElement('a');
+            // link.href = newCanvas.toDataURL('image/png');
+            // link.download = 'beleg.png';
+            // link.click();
         }).catch(function(error) {
             alertify.error('Fehler beim Erstellen des Screenshots:', error);
         });
